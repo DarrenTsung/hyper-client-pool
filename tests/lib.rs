@@ -57,6 +57,27 @@ fn assert_successful_result(result: DeliveryResult) {
 }
 
 #[test]
+fn a_ton_of_notifications() {
+    let _read = TEST_LOCK.read().unwrap_or_else(|e| e.into_inner());
+
+    let _ = env_logger::try_init();
+
+    let mut config = default_config();
+    config.workers = 2;
+
+    let mut pool = Pool::new(config).unwrap();
+    let (tx, rx) = mpsc::channel();
+
+    for _ in 0..2000 {
+        pool.request(onesignal_transaction(MspcDeliverable(tx.clone()))).expect("request ok");
+    }
+
+    for _ in 0..2000 {
+        assert_successful_result(rx.recv().unwrap());
+    }
+}
+
+#[test]
 fn lots_of_get_single_worker() {
     let _read = TEST_LOCK.read().unwrap_or_else(|e| e.into_inner());
 
