@@ -15,6 +15,7 @@ tokio-core = "0.1"
 fpool = "~0.3.1"
 raii-counter = "0.1"
 hyper-http-connector = { git = "https://github.com/DarrenTsung/hyper-http-connector.git", branch = "trust-dns-cache-resolver" }
+trust-dns-resolver = "0.9"
 
 [dev-dependencies]
 env_logger = "0.5"
