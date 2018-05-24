@@ -12,8 +12,6 @@ use hyper_tls::HttpsConnector;
 use hyper::{self, Client};
 use native_tls::TlsConnector;
 use tokio_core::reactor::{Core, Handle};
-use trust_dns_resolver::config::*;
-use trust_dns_resolver::ResolverFuture;
 
 use config::Config;
 use deliverable::Deliverable;
@@ -92,12 +90,7 @@ impl<D: Deliverable> Executor<D> {
                 let mut core = Core::new().unwrap();
                 let handle = core.handle();
 
-                let resolver = core.run(ResolverFuture::new(
-                    ResolverConfig::default(),
-                    ResolverOpts::default(),
-                )).unwrap();
-
-                let mut http = HttpConnector::new(&handle, resolver);
+                let mut http = HttpConnector::new(&handle);
                 http.enforce_http(false);
                 let connector = HttpsConnector::from((http, tls));
                 let client = hyper::Client::configure()

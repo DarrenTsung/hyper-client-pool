@@ -7,7 +7,6 @@ extern crate hyper_tls;
 extern crate native_tls;
 extern crate raii_counter;
 extern crate tokio_core;
-extern crate trust_dns_resolver;
 
 pub extern crate hyper;
 
