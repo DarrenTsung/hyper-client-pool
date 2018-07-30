@@ -6,5 +6,5 @@ hyper-client-pool:
     - .:/hyper-client-pool
   cached: true
 httpbin:
-  image: "vimagick/httpbin:latest"
+  image: httpbin:latest
   cached: true
