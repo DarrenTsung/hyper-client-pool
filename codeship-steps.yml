@@ -1,5 +1,7 @@
 ---
-  -
-    name: "Run the tests"
+  - name: "Examine the container"
     service: "hyper-client-pool"
-    command: "bash -c \"script/travis.sh\""
+    command: pwd && ls
+  - name: "Run the tests"
+    service: "hyper-client-pool"
+    command: "./script/travis.sh"
