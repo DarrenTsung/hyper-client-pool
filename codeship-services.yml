@@ -2,10 +2,12 @@ hyper-client-pool:
   build:
     image: hyper-client-pool
     dockerfile: Dockerfile
+  depends_on:
+    - httpbin
   volumes:
     - .:/hyper-client-pool
   cached: true
 httpbin:
-  image: httpbin:latest
+  image: kennethreitz/httpbin:latest
 database:
   image: postgres:latest
