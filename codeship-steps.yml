@@ -6,7 +6,5 @@
     service: hyper-client-pool
     command: ls
   - name: Run the tests
-    services:
-      - hyper-client-pool
-      - httpbin
+    service: hyper-client-pool
     command: "./script/travis.sh"
