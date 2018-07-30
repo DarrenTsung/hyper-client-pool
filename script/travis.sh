@@ -6,8 +6,8 @@ set -e
 
 CURR_DIR=$(pwd)
 
-CARGO_TARGET_DIR="$CURR_DIR/cache/target"
-CARGO_HOME="$CURR_DIR/cache/cargo"
+# CARGO_TARGET_DIR="$CURR_DIR/cache/target"
+# CARGO_HOME="$CURR_DIR/cache/cargo"
 
 # Run all the tests with debug info + debug_asserts
 cargo test
