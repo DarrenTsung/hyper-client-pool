@@ -2,10 +2,7 @@
 
 # https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 # -e => Exit on error instead of continuing
-# -v => Verbose - print input as it comes in. This means when you
-#       run a script, the script itself will be printed as well. Useful
-#       for understanding where Travis failed at.
-set -ev
+set -e
 
 # Parse which command this is
 DOWNLOAD=1
