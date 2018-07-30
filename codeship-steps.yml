@@ -1,15 +1,19 @@
 ---
-  # This step is trivial so that it is a good measure of how long
-  # the images take to build / pull.
-  - name: Build / pull images
-    service: hyper-client-pool
-    command: echo "Done pulling images"
-  - name: Download the cache from S3
-    service: awsdeployment
-    command: /deploy/script/download-cache.sh 
-  - name: Run the tests
-    service: hyper-client-pool
-    command: ./script/travis.sh
-  - name: Upload the cache to S3
-    service: awsdeployment
-    command: /deploy/script/upload-cache.sh
+  - type: parallel
+    steps:
+    # This step is trivial so that it is a good measure of how long
+    # the images take to build / pull.
+    - name: Build / pull images
+      service: hyper-client-pool
+      command: echo "Done pulling images"
+    - name: Download the cache from S3
+      service: awsdeployment
+      command: /deploy/script/download-cache.sh
+  - type: serial
+    steps:
+    - name: Run the tests
+      service: hyper-client-pool
+      command: ./script/travis.sh
+    - name: Upload the cache to S3
+      service: awsdeployment
+      command: /deploy/script/upload-cache.sh
