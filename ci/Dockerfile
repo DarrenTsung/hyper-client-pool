@@ -6,5 +6,6 @@ COPY Cargo.toml .
 RUN cargo build
 
 FROM build_deps
+WORKDIR /hyper-client-pool
 COPY . .
 CMD bash
