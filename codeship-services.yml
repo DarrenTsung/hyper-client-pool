@@ -1,0 +1,6 @@
+hyper-client-pool:
+  build:
+    image: hyper-client-pool
+    dockerfile: Dockerfile
+httpbin: 
+    image: "vimagick/httpbin:latest"
