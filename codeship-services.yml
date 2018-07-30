@@ -4,8 +4,6 @@ hyper-client-pool:
     dockerfile: ci/Dockerfile
   depends_on:
     - httpbin
-  volumes:
-    - .:/hyper-client-pool
   cached: true
 httpbin:
   image: kennethreitz/httpbin:latest
