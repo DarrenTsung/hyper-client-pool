@@ -4,5 +4,7 @@ hyper-client-pool:
     dockerfile: Dockerfile
   volumes:
     - .:/hyper-client-pool
-httpbin: 
-    image: "vimagick/httpbin:latest"
+  cached: true
+httpbin:
+  image: "vimagick/httpbin:latest"
+  cached: true
