@@ -1,7 +1,12 @@
 ---
-  - name: "Examine the container"
-    service: "hyper-client-pool"
-    command: pwd && ls
-  - name: "Run the tests"
-    service: "hyper-client-pool"
+  - name: Examine the container
+    service: hyper-client-pool
+    command: pwd
+  - name: Examine the container
+    service: hyper-client-pool
+    command: ls
+  - name: Run the tests
+    services:
+      - hyper-client-pool
+      - httpbin
     command: "./script/travis.sh"
