@@ -1,7 +1,7 @@
 hyper-client-pool:
   build:
     image: hyper-client-pool
-    dockerfile: Dockerfile
+    dockerfile: ci/Dockerfile
   depends_on:
     - httpbin
   volumes:
