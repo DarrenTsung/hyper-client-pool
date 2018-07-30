@@ -4,6 +4,12 @@
   - name: Build / pull images
     service: hyper-client-pool
     command: echo "Done pulling images"
+  - name: Download the cache from S3
+    service: awsdeployment
+    command: ./script/cache.sh download
   - name: Run the tests
     service: hyper-client-pool
-    command: "./script/travis.sh"
+    command: ./script/travis.sh
+  - name: Upload the cache to S3
+    service: awsdeployment
+    command: ./script/cache.sh upload
