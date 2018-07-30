@@ -6,10 +6,10 @@
     command: echo "Done pulling images"
   - name: Download the cache from S3
     service: awsdeployment
-    command: /deploy/script/cache.sh download
+    command: /deploy/script/download-cache.sh 
   - name: Run the tests
     service: hyper-client-pool
     command: ./script/travis.sh
   - name: Upload the cache to S3
     service: awsdeployment
-    command: /deploy/script/cache.sh upload
+    command: /deploy/script/upload-cache.sh
