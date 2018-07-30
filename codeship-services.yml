@@ -7,4 +7,5 @@ hyper-client-pool:
   cached: true
 httpbin:
   image: httpbin:latest
-  cached: true
+database:
+  image: postgres:latest
