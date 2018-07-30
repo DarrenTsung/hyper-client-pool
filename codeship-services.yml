@@ -9,5 +9,3 @@ hyper-client-pool:
   cached: true
 httpbin:
   image: kennethreitz/httpbin:latest
-database:
-  image: postgres:latest

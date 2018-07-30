@@ -1,10 +1,9 @@
 ---
-  - name: Examine the container (pwd)
+  # This step is trivial so that it is a good measure of how long
+  # the images take to build / pull.
+  - name: Build / pull images
     service: hyper-client-pool
-    command: pwd
-  - name: Examine the container (ls)
-    service: hyper-client-pool
-    command: ls
+    command: echo "Done pulling images"
   - name: Run the tests
     service: hyper-client-pool
     command: "./script/travis.sh"
