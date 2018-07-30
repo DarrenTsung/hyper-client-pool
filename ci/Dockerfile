@@ -4,7 +4,7 @@ WORKDIR /hyper-client-pool
 RUN echo "Hello"
 RUN USER=nobody cargo init . --lib
 COPY Cargo.toml .
-RUN cargo build
+RUN cargo build --tests
 
 FROM build_deps
 WORKDIR /hyper-client-pool
