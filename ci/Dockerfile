@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y git ssh lsof
 
 WORKDIR /hyper-client-pool
 COPY Cargo.toml .
-COPY Cargo.lock .
+# COPY Cargo.lock .
 
 RUN cargo build
 CMD bash
