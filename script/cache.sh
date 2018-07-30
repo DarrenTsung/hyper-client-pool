@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-# Fail the build on any failed command
-set -e
+# https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
+# -e => Exit on error instead of continuing
+# -v => Verbose - print input as it comes in. This means when you
+#       run a script, the script itself will be printed as well. Useful
+#       for understanding where Travis failed at.
+set -ev
 
 # Parse which command this is
 DOWNLOAD=1
@@ -21,12 +25,21 @@ if [ "$STATE" = $DOWNLOAD ]; then
   # ensure that the cache directory exists
   mkdir -p cache
 
+  # This command will fail if no such bucket, so unset 'e' (exit on error) for this part
+  set +e
+  aws s3 ls "s3://onesignal-cache/hyper-client-pool/$CI_BRANCH" &> .output
+  set -e
+
   # if CI_BRANCH cache does not exist, use fallback branch
-  if aws s3 ls "s3://onesignal-cache/hyper-client-pool/$CI_BRANCH" 2>&1 | grep -q 'NoSuchBucket'; then
-    aws s3 sync cache s3://onesignal-cache/hyper-client-pool/master
+  if cat .output | grep -q 'NoSuchBucket'; then
+    echo "No such bucket, using master cache.."
+    # aws s3 sync cache s3://onesignal-build/master
   else
-    aws s3 sync cache s3://onesignal-cache/hyper-client-pool/$CI_BRANCH
+    echo "Using $CI_BRANCH cache.."
+    # aws s3 sync cache s3://onesignal-build/$CI_BRANCH
   fi
 else
-  aws s3 sync cache s3://onesignal-cache/hyper-client-pool/$CI_BRANCH
+  echo "Uploading to cache.."
+  ls cache
+  # aws s3 sync cache s3://onesignal-build/$CI_BRANCH
 fi
