@@ -1,8 +1,8 @@
 ---
-  - name: Examine the container
+  - name: Examine the container (pwd)
     service: hyper-client-pool
     command: pwd
-  - name: Examine the container
+  - name: Examine the container (ls)
     service: hyper-client-pool
     command: ls
   - name: Run the tests
